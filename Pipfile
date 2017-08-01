@@ -1,0 +1,11 @@
+[[source]]
+verify_ssl = true
+url = "https://pypi.python.org/simple"
+
+[dev-packages]
+tox = "*"
+pytest = "*"
+pylint = "*"
+
+[packages]
+Django = "==1.11.*"

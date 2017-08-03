@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'zoho_reports.core',
 ]
 
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'zoho_reports.urls'
@@ -119,3 +121,87 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# COOKIE CONFIGURATION
+# The purpose of customizing the cookie names is to avoid conflicts when
+# multiple Django services are running behind the same hostname.
+# Detailed information at: https://docs.djangoproject.com/en/dev/ref/settings/
+SESSION_COOKIE_NAME = 'zoho_reports_sessionid'
+CSRF_COOKIE_NAME = 'zoho_reports_csrftoken'
+LANGUAGE_COOKIE_NAME = 'zoho_reports_language'
+# END COOKIE CONFIGURATION
+
+# AUTHENTICATION CONFIGURATION
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
+
+AUTH_USER_MODEL = 'core.User'
+
+AUTHENTICATION_BACKENDS = (
+    'auth_backends.backends.EdXOpenIdConnect',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+ENABLE_AUTO_AUTH = False
+AUTO_AUTH_USERNAME_PREFIX = 'auto_auth_'
+
+SOCIAL_AUTH_STRATEGY = 'auth_backends.strategies.EdxDjangoStrategy'
+
+# Request the user's permissions in the ID token
+EXTRA_SCOPE = ['permissions']
+
+# TODO Set this to another (non-staff, ideally) path.
+LOGIN_REDIRECT_URL = '/admin/'
+# END AUTHENTICATION CONFIGURATION
+
+
+# OPENEDX-SPECIFIC CONFIGURATION 
+PLATFORM_NAME = 'Your Platform Name Here'
+# END OPENEDX-SPECIFIC CONFIGURATION
+
+# Set up logging for development use (logging to stdout)
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s %(levelname)s %(process)d '
+                      '[%(name)s] %(filename)s:%(lineno)d - %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+            'stream': 'ext://sys.stdout',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'INFO'
+        },
+        'requests': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'WARNING'
+        },
+        'factory': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'WARNING'
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'WARNING'
+        },
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+    }
+}

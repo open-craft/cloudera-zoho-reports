@@ -2,10 +2,13 @@
 verify_ssl = true
 url = "https://pypi.python.org/simple"
 
+[packages]
+Django = "==1.11.*"
+edx-auth-backends = "*"
+
 [dev-packages]
 tox = "*"
 pytest = "*"
 pylint = "*"
-
-[packages]
-Django = "==1.11.*"
+django-dynamic-fixture = "*"
+pytest-django = "*"

@@ -19,4 +19,9 @@ if __name__ == "__main__":
                 "forget to activate a virtual environment?"
             )
         raise
+
+    # Override the default port for the runserver command.
+    from django.core.management.commands import runserver
+    runserver.Command.default_port = "9000"
+
     execute_from_command_line(sys.argv)

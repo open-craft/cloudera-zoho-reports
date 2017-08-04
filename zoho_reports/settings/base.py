@@ -150,8 +150,8 @@ SOCIAL_AUTH_STRATEGY = 'auth_backends.strategies.EdxDjangoStrategy'
 # Request the user's permissions in the ID token
 EXTRA_SCOPE = ['permissions']
 
-# TODO Set this to another (non-staff, ideally) path.
-LOGIN_REDIRECT_URL = '/admin/'
+# Redirect to the main view after login, which will in turn redirect to a useful page.
+LOGIN_REDIRECT_URL = '/'
 # END AUTHENTICATION CONFIGURATION
 
 

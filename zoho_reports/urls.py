@@ -24,4 +24,6 @@ from zoho_reports.core import views as core_views
 urlpatterns = auth_urlpatterns + [
     url(r'^admin/', admin.site.urls),
     url(r'^auto_auth/$', core_views.AutoAuth.as_view(), name='auto_auth'),
+    url(r'^$', core_views.IndexView.as_view(), name='index'),
+    url(r'^(?P<path>[-\w]+)/$', core_views.PageView.as_view(), name='static_page'),
 ]

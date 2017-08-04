@@ -28,3 +28,36 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.get_full_name())
+
+
+class Page(models.Model):
+    """A static HTML page."""
+
+    path = models.SlugField(
+        "URL path",
+        max_length=255,
+        help_text="The URL path the page will be available at.",
+    )
+    html = models.TextField(
+        "Page source",
+        help_text="The HTML source code of the page.",
+    )
+    _allowed_emails = models.CharField(
+        "Allowed users",
+        max_length=511,
+        blank=True,
+        db_column="allowed_users",
+        help_text="Comma-seprateed list of email addresses with access to the page",
+    )
+
+    @property
+    def allowed_emails(self):
+        "The allowed email addresses as a list"
+        return [email.strip() for email in self._allowed_emails.split()]
+
+    def has_access(self, user):
+        """Return a bool indicating whether the given Django user has access to the page."""
+        return user is not None and (
+            user.is_staff or
+            user.email in self.allowed_emails
+        )

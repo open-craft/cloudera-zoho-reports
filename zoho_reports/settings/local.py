@@ -1,4 +1,6 @@
-from zoho_reports.settings.base import *
+"""Settings for local development."""
+
+from zoho_reports.settings.base import *  # pylint: disable=wildcard-import
 
 DEBUG = True
 

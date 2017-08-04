@@ -1,4 +1,4 @@
-""" Tests for core models. """
+"""Tests for core models."""
 
 from django.test import TestCase
 from django_dynamic_fixture import G
@@ -9,10 +9,11 @@ from zoho_reports.core.models import User
 
 # pylint: disable=no-member
 class UserTests(TestCase):
-    """ User model tests. """
+    """User model tests."""
     TEST_CONTEXT = {'foo': 'bar', 'baz': None}
 
     def test_access_token(self):
+        """Test the access_token property on the custom user model."""
         user = G(User)
         self.assertIsNone(user.access_token)
 
@@ -25,7 +26,7 @@ class UserTests(TestCase):
         self.assertEqual(user.access_token, access_token)
 
     def test_get_full_name(self):
-        """ Test that the user model concatenates first and last name if the full name is not set. """
+        """Test that the user model concatenates first and last name if the full name is not set."""
         full_name = 'George Costanza'
         user = G(User, full_name=full_name)
         self.assertEqual(user.get_full_name(), full_name)

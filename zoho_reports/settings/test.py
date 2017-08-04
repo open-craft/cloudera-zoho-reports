@@ -1,4 +1,6 @@
-from zoho_reports.settings.base import *
+"""Settings for unit testing."""
+
+from zoho_reports.settings.base import *  # pylint: disable=wildcard-import
 
 # IN-MEMORY TEST DATABASE
 DATABASES = {

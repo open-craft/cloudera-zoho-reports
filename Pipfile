@@ -5,6 +5,10 @@ url = "https://pypi.python.org/simple"
 [packages]
 Django = "==1.11.*"
 edx-auth-backends = "*"
+gunicorn = "*"
+dj-database-url = "*"
+whitenoise = "*"
+psycopg2 = "*"
 
 [dev-packages]
 tox = "*"

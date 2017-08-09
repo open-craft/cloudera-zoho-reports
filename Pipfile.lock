@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4f158a83203df0d2910678b2277ab88ecfd99edc04d29db591c20f0255931c80"
+            "sha256": "e2b52fd3a61a0740f1a0e14c860bdfb89e4034a275b4292efa6a84911d2dc3c1"
         },
         "requires": {},
         "sources": [
@@ -21,6 +21,9 @@
         "defusedxml": {
             "version": "==0.5.0"
         },
+        "dj-database-url": {
+            "version": "==0.4.2"
+        },
         "django": {
             "version": "==1.11.4"
         },
@@ -30,11 +33,17 @@
         "future": {
             "version": "==0.16.0"
         },
+        "gunicorn": {
+            "version": "==19.7.1"
+        },
         "idna": {
             "version": "==2.5"
         },
         "oauthlib": {
             "version": "==2.0.2"
+        },
+        "psycopg2": {
+            "version": "==2.7.3"
         },
         "pycryptodomex": {
             "version": "==3.4.6"
@@ -68,6 +77,9 @@
         },
         "urllib3": {
             "version": "==1.22"
+        },
+        "whitenoise": {
+            "version": "==3.3.0"
         }
     },
     "develop": {

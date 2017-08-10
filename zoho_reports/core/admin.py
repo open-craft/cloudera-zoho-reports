@@ -23,5 +23,6 @@ admin.site.register(User, CustomUserAdmin)
 
 class PageAdmin(admin.ModelAdmin):
     """Admin configuration for the Page model."""
+    list_display = ('path', '_allowed_emails')
 
 admin.site.register(Page, PageAdmin)

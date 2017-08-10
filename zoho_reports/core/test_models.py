@@ -4,7 +4,7 @@ from django.test import TestCase
 from django_dynamic_fixture import G
 from social_django.models import UserSocialAuth
 
-from zoho_reports.core.models import User
+from zoho_reports.core.models import Page, User
 
 
 # pylint: disable=no-member
@@ -45,3 +45,22 @@ class UserTests(TestCase):
         full_name = 'Bob'
         user = G(User, full_name=full_name)
         self.assertEqual(str(user), full_name)
+
+
+class PageTest(TestCase):
+    """Tests for the Page model."""
+
+    def test_allowed_emails(self):
+        """Test the allowed_emails property."""
+        page = G(Page, _allowed_emails="audit@example.com, Student@example.com ")
+        self.assertEqual(page.allowed_emails, ["audit@example.com", "student@example.com"])
+
+    def test_has_access(self):
+        """Test that access permissions work as intended."""
+        page = G(Page, _allowed_emails="audit@example.com, Student@example.com ")
+        audit_user = G(User, is_staff=False, email="audit@Example.com")
+        user = G(User, is_staff=False)
+        staff_user = G(User, is_staff=True)
+        self.assertTrue(page.has_access(audit_user))
+        self.assertFalse(page.has_access(user))
+        self.assertTrue(page.has_access(staff_user))

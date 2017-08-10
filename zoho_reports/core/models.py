@@ -53,11 +53,14 @@ class Page(models.Model):
     @property
     def allowed_emails(self):
         "The allowed email addresses as a list"
-        return [email.strip() for email in self._allowed_emails.split()]
+        return [email.strip().lower() for email in self._allowed_emails.split(",")]
 
     def has_access(self, user):
         """Return a bool indicating whether the given Django user has access to the page."""
         return user is not None and (
             user.is_staff or
-            user.email in self.allowed_emails
+            user.email.lower() in self.allowed_emails
         )
+
+    def __str__(self):
+        return "Page at /{}/".format(self.path)

@@ -61,3 +61,6 @@ class Page(models.Model):
             user.is_staff or
             user.email.lower() in self.allowed_emails
         )
+
+    def __str__(self):
+        return "Page at /{}/".format(self.path)

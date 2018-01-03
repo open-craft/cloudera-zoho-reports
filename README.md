@@ -11,7 +11,7 @@ Setting up the development environment
 
 ### pipenv
 
-This project uses pipenv[1] to manage dependencies.  You first need to install
+This project uses [pipenv][1] to manage dependencies.  You first need to install
 pipenv, e.g. using
 
     pip3 install --user pipenv

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -140,7 +141,7 @@ LOGOUT_URL = '/logout/'
 AUTH_USER_MODEL = 'core.User'
 
 AUTHENTICATION_BACKENDS = (
-    'auth_backends.backends.EdXOpenIdConnect',
+    'auth_backends.backends.EdXOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -148,9 +149,6 @@ ENABLE_AUTO_AUTH = False
 AUTO_AUTH_USERNAME_PREFIX = 'auto_auth_'
 
 SOCIAL_AUTH_STRATEGY = 'auth_backends.strategies.EdxDjangoStrategy'
-
-# Request the user's permissions in the ID token
-EXTRA_SCOPE = ['permissions']
 
 # Redirect to the main view after login, which will in turn redirect to a useful page.
 LOGIN_REDIRECT_URL = '/'

@@ -38,27 +38,26 @@ To enter a new shell inside the environment:
 ### Authenticating with an Open edX devstack
 
 1. Start the Open edX devstack in standard configuration, with the LMS listening
-   on http://localhost:8000/.
+   on http://localhost:18000/.
 
-1. Navigate to http://localhost:8000/admin/oauth2/client/add/ to add a new
-   OAuth2 client.  Use these settings:
+1. Navigate to http://localhost:18000/admin/oauth2_provider/application/add/ to add a new
+   OAuth2 client. Use these settings:
+   - Client id: zoho_reports
+   - Redirect uris: http://localhost:9000/complete/edx-oauth2/
+   - Client type: Confidential
+   - Authorization grant type: Authorization code
+   - Client secret: open_secret
+   - Name: zoho_reports
 
-   URL: http://localhost:9000/
-
-   Redirect URI: http://localhost:9000/complete/edx-oidc/
-
-   Client ID: zoho_reports
-
-   Client secret: open_secret
-
-   Client type: Confidential (Web applications)
-
-   Logout URI: http://localhost:9000/logout
+1. Navigate to http://localhost:18000/admin/oauth_dispatch/applicationaccess/add/ to add
+   access for the new Oauth2 client.  Use these settings:
+   - Application: zoho_reports
+   - Scopes: user_id,profile,email
 
 1. Start the zoho_reports development server using
 
-       pipenv run python manage.py runserver
+       pipenv run python manage.py runserver 9000
 
-1. Navigate to http://localhost:9000/
+1. Navigate to http://localhost:9000/.
 
 1. Log in with a devstack account.

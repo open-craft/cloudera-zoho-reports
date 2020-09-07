@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name='zoho-reports',
 
-    version='0.0.1',
+    version='0.0.2',
 
     description='Simple wrapper app for embedding Zoho reports',
 
@@ -15,8 +15,7 @@ setup(
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Topic :: Internet',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
     ],
 
     packages=find_packages(),

@@ -141,7 +141,7 @@ LOGOUT_URL = '/logout/'
 AUTH_USER_MODEL = 'core.User'
 
 AUTHENTICATION_BACKENDS = (
-    'auth_backends.backends.EdXOAuth2',
+    'zoho_reports.core.backends.CustomHeaderEdXOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -152,6 +152,10 @@ SOCIAL_AUTH_STRATEGY = 'auth_backends.strategies.EdxDjangoStrategy'
 
 # Redirect to the main view after login, which will in turn redirect to a useful page.
 LOGIN_REDIRECT_URL = '/'
+
+# HACK: allows customizing `Authorization` header sent to the `/oauth2/access_token` endpoint
+#  of the edx-platform.
+SOCIAL_AUTH_EDX_OAUTH2_AUTHORIZATION_HEADER = None
 # END AUTHENTICATION CONFIGURATION
 
 

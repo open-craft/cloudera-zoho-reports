@@ -19,3 +19,4 @@ DATABASES['default'].update(dj_database_url.config())
 
 # Simplified static file serving.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MANIFEST_STRICT = False

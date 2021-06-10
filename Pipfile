@@ -6,7 +6,7 @@ url = "https://pypi.python.org/simple"
 # Pinned to `3.0.*` because:
 # 1. This is the version is currently tested with `edx-auth backends`: https://github.com/edx/auth-backends/blob/3.1.0/tox.ini#L10
 # 2. Django 3.1 does not work with the current version of `django-dynamic-fixture`: https://github.com/paulocheque/django-dynamic-fixture/issues/135
-Django = "==3.0.*"
+Django = "==3.1.*"
 edx-auth-backends = "*"
 gunicorn = "*"
 dj-database-url = "*"
